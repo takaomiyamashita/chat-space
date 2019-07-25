@@ -37,14 +37,18 @@ Things you may want to cover:
 ## usersテーブル
 |column|Type|Options|
 |------|----|-------|
-|name|text|null: false, index: true|
+|name|string|null: false, index: true|
 ### Association
-- belongs_to :group
+- has_many :users_groups
+- has_many :groups , trough: users_groups
 
 ## groupsテーブル
 |column|Type|Options|
 |------|----|-------|
-|name|text|null: false, index: true|
+|name|string|null: false, index: true|
+### Association
+- has_many :users_groups
+- has_many :users, through: users_groups
 
 ## users_groupsテーブル
 |column|Type|Options|
@@ -52,14 +56,5 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
-- belongs_to :group
-
-## users_messagesテーブル
-|column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|message_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :user
-- belongs_to :message
+- belongs_to :users
+- belongs_to :groups
