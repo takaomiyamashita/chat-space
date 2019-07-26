@@ -40,7 +40,7 @@ Things you may want to cover:
 |name|string|null: false, index: true|
 ### Association
 - has_many :users_groups
-- has_many :groups , trough: users_groups
+- has_many :groups, messages trough: users_groups
 
 ## groupsテーブル
 |column|Type|Options|
@@ -48,7 +48,7 @@ Things you may want to cover:
 |name|string|null: false, index: true|
 ### Association
 - has_many :users_groups
-- has_many :users, through: users_groups
+- has_many :users, messages, through: users_groups
 
 ## users_groupsテーブル
 |column|Type|Options|
