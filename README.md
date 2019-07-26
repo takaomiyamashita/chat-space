@@ -39,16 +39,16 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false, index: true|
 ### Association
-- has_many :users_groups
-- has_many :groups, messages trough: users_groups
+- has_many :users_groups, messages
+- has_many :groups, trough: users_groups
 
 ## groupsテーブル
 |column|Type|Options|
 |------|----|-------|
 |name|string|null: false, index: true|
 ### Association
-- has_many :users_groups
-- has_many :users, messages, through: users_groups
+- has_many :users_groups, messages
+- has_many :users, through: users_groups
 
 ## users_groupsテーブル
 |column|Type|Options|
@@ -56,5 +56,5 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
