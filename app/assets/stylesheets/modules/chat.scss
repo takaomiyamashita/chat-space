@@ -36,7 +36,7 @@
   }
 
   .messages {
-    background-color: #FAFAFA;
+    position: absolute;
     box-sizing: border-box;
     padding: 46px 40px 0;
     height: calc(100% - 100px - 90px);
@@ -66,13 +66,16 @@
   }
 
   .form {
-    width: calc(100% - 300px);
+    position:absolute; right:0%; 
+    float: right;
+    width: calc(100% - 308px);
     position: fixed; bottom: 0%;
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
     padding: 20px 50px 20px 40px;
     &__message {
+      font-size: 16px;
       border: none;
       float: left;
       height: 50px;
@@ -81,7 +84,7 @@
     &__mask {
       background-color: $white;
       float: left;
-      height: 50px;
+      height: 52px;
       padding-right: 10px;
       &__image {
         font-size: 20px;
