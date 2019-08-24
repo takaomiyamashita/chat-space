@@ -48,9 +48,9 @@
             メッセージ
     .form
       %form
-        %input.form__message{type: 'placeholder'}
+        %input.form__message{placeholder: " type a messages", type: "text"}/
         .form__mask
           %label.form__mask__image
-            = fa_icon 'picture-o', class: 'icon'
+            %i.far.fa-image 
             %input.hidden{type: 'file'}
         %input.form__submit{type: 'submit', value: 'Send'}
