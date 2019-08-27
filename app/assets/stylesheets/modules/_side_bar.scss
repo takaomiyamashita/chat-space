@@ -1,7 +1,7 @@
 .side-bar {
   box-sizing: border-box;
   color: $white;
-  width: 300px;
+  width: 292px;
   .header {
     background-color: $side_blue_dark;
     height: 100px;
@@ -18,26 +18,13 @@
       .list {
         display: inline-block;
       }
-      .icon {
+      .fa-edit {
         color: $white;
         font-size: $side_header_font;
       }
-    }
-  }
-
-  .groups {
-    background-color: $side_blue_light;
-    height: calc(100vh - 100px);
-    padding: 0 20px;
-    .group {
-      box-sizing: border-box;
-      padding: 20px 0 40px;
-      &__name {
-        font-size: $side_group_name;
-      }
-      &__message {
-        font-size: $side_group_message;
-        margin-top: 5px;
+      .fa-cog {
+        color: $white;
+        font-size: $side_header_font;
       }
     }
   }
