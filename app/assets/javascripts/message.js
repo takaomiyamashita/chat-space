@@ -1,3 +1,5 @@
+$(function (){
+
 function buildHTML(message){
   if ( message.image ) {
     var html =
@@ -36,14 +38,16 @@ function buildHTML(message){
         </div>
       </div>`
     return html;
-  };
+  }
 }
-$(document).on('turbolinks:load', function() {
+
+// $(document).on('turbolinks:load', function() {
   $('.new_message').on('submit', function(e){
-    console.log(ok);
+    console.log('hoge');
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
+    console.log(this)
     $.ajax({
       url: url,
       type: "POST",
@@ -54,6 +58,7 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(data){
       var html = buildHTML(data);
+      console.log(html);
       $('.messages').append(html);      
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
       $('form')[0].reset();
@@ -61,10 +66,6 @@ $(document).on('turbolinks:load', function() {
     .fail(function(){
       alert('error');
     })
-    .always(function(){
-      $(".form__submit").prop('disabled', faise);
-    });
       return false;
     });
   });
-});
