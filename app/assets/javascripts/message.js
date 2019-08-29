@@ -39,8 +39,12 @@ function buildHTML(message){
   };
 }
 $(document).on('turbolinks:load', function() {
+<<<<<<< HEAD
   $('.new_message').on('submit', function(e){
     console.log(ok);
+=======
+  $('.new_message').on('submit', function(){
+>>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
@@ -59,6 +63,7 @@ $(document).on('turbolinks:load', function() {
       $('form')[0].reset();
     })
 <<<<<<< HEAD
+<<<<<<< HEAD
     .fail(function(){
       alert('error');
     })
@@ -67,11 +72,14 @@ $(document).on('turbolinks:load', function() {
     });
       return false;
 =======
+=======
+>>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
       .fail(function(){
         alert('error');
       });
       return false;
     });
+<<<<<<< HEAD
 >>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
   });
 });
@@ -92,6 +100,11 @@ $(document).on('turbolinks:load', function() {
 
 <<<<<<< HEAD
 =======
+=======
+  });
+});
+
+>>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
 // $(document).on('turbolinks:load', function() {
 //   $('.new_message').on('submit', function(){
 //     e.preventDefault();
@@ -107,6 +120,9 @@ $(document).on('turbolinks:load', function() {
 //    });
 // });
 
+<<<<<<< HEAD
+>>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
+=======
 >>>>>>> a8f77267fea3d26682f5a09859c535ce73376cb0
 // // １行目のコード記載することで、以下のネストの内容が動作するようになるらしい。
 // // form_forメソッドでイベント発火させたい場合は、new_messageをクラスに指定する。これは暗記。
