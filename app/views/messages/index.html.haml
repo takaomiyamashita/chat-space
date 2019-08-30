@@ -21,15 +21,6 @@
     .messages
       = render @messages
 
-    -# .form
-    -#   %form
-    -#     %input.form__message{placeholder: " type a messages", type: "text"}/
-    -#     .form__mask
-    -#       %label.form__mask__image
-            
-    -#         %input.hidden{type: 'file'}
-    -#     %input.form__submit{type: 'submit', value: 'Send'}
-
     .form
       = form_for [@group, @message] do |f|
         = f.text_field :content, class: 'form__message', placeholder: 'type a message'

@@ -1,46 +1,24 @@
 function buildHTML(message){
-  if ( message.image ) {
-    var html =
-     `<div class="message" data-message-id=${message.id}>
-        <div class="upper-message">
-          <div class="upper-message__user-name">
-            ${message.user_name}
-          </div>
-          <div class="upper-message__date">
-            ${message.date}
-          </div>
+  var addImage = '';
+  var html = `
+      <div class="chat__contents__content" data-message-id="${message.id}">
+        <div class="chat__contents__content-top" data-message-id="${message.id}">
+          <div class="chat__contents__content-top__user">${message.name}</div>
+          <div class="chat__contents__content-top__timestamp">${message.date}</div>
         </div>
-        <div class="lower-message">
-          <p class="lower-message__content">
+        <div class="chat__contents__content__text">
+          <p class="chat__contents__content__text">
             ${message.content}
           </p>
+          ${addImage}
         </div>
-        <asset_path src=${message.image} >
-      </div>`
-    return html;
-  } else {
-    var html =
-     `<div class="message" data-message-id=${message.id}>
-        <div class="upper-message">
-          <div class="upper-message__user-name">
-            ${message.user_name}
-          </div>
-          <div class="upper-message__date">
-            ${message.date}
-          </div>
-        </div>
-        <div class="lower-message">
-          <p class="lower-message__content">
-            ${message.content}
-          </p>
-        </div>
-      </div>`
-    return html;
-  };
+      </div>`;
+  return html;
 }
+
 $(document).on('turbolinks:load', function() {
   $('.new_message').on('submit', function(e){
-    console.log(ok);
+    console.log('ok');
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
@@ -62,9 +40,8 @@ $(document).on('turbolinks:load', function() {
       alert('error');
     })
     .always(function(){
-      $(".form__submit").prop('disabled', faise);
-    });
-      return false;
-    });
+      $(".form__submit").prop('disabled', false);
+    })
+    return false;
   });
 });
