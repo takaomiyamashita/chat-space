@@ -1,5 +1,6 @@
 function buildHTML(message){
-  var addImage = '';
+  var messageContent = message.content ? message.content : "";
+  var addImage = message.image_url ? `<img src="${ message.image_url }">` : ``;
   var html = `
       <div class="chat__contents__content" data-message-id="${message.id}">
         <div class="chat__contents__content-top" data-message-id="${message.id}">
@@ -8,17 +9,16 @@ function buildHTML(message){
         </div>
         <div class="chat__contents__content__text">
           <p class="chat__contents__content__text">
-            ${message.content}
+            ${messageContent}
           </p>
           ${addImage}
         </div>
-      </div>`;
+      </div>`
   return html;
 }
 
 $(document).on('turbolinks:load', function() {
   $('.new_message').on('submit', function(e){
-    console.log('ok');
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
