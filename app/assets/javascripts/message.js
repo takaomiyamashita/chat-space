@@ -1,23 +1,25 @@
-function buildHTML(message){
-  var messageContent = message.content ? message.content : "";
-  var addImage = message.image_url ? `<img src="${ message.image_url }">` : ``;
-  var html = `
-      <div class="chat__contents__content" data-message-id="${message.id}">
-        <div class="chat__contents__content-top" data-message-id="${message.id}">
-          <div class="chat__contents__content-top__user">${message.name}</div>
-          <div class="chat__contents__content-top__timestamp">${message.date}</div>
-        </div>
-        <div class="chat__contents__content__text">
-          <p class="chat__contents__content__text">
-            ${messageContent}
-          </p>
-          ${addImage}
-        </div>
-      </div>`
-  return html;
-}
-
 $(document).on('turbolinks:load', function() {
+  function buildHTML(message){
+    var AddImage = '';
+    var MessageContent = message.content.present ? message.content : "";
+    var AddImage = message.image ? `<img src=${ message.image }>` : "";
+    var html = `
+      <div class="message" data-message-id = ${message.id}>
+        <div class="upper-message">
+          <div class="upper-message__user-name">${message.user_name}</div>
+          <div class="upper-message__date">${message.date}</div>
+        </div>
+        <div class="lower-message">
+          <p class="lower-message__content">
+            ${MessageContent}
+          </p>
+        </div>
+        ${AddImage}
+      </div>`
+    return html;
+  } 
+
+// $(document).on('turbolinks:load', function() {
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
