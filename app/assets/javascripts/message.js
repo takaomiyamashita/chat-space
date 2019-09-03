@@ -38,6 +38,9 @@ $(document).on('turbolinks:load', function() {
       console.log('error');
     });
   };
+  function ScrollToNewMessage(){
+    $('.main__message').animate({scrollTop: $('.main__message')[0].scrollHeight}, 'fast');
+  }
 
   $('.new_message').on('submit', function(e){
     e.preventDefault();
