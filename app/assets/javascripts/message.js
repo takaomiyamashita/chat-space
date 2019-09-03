@@ -65,4 +65,5 @@ $(document).on('turbolinks:load', function() {
     })
     return false;
   });
+  setInterval(reloadMessages, 5000);
 });
