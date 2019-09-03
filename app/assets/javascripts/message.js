@@ -19,7 +19,22 @@ $(document).on('turbolinks:load', function() {
     return html;
   } 
 
-// $(document).on('turbolinks:load', function() {
+  var reloadMessages = function() {
+    last_message_id = message.id
+    $.ajax({
+      url: location.href,
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log('success');
+    })
+    .fail(function() {
+      console.log('error');
+    });
+  };
+
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
