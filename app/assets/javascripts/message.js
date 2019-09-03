@@ -29,6 +29,10 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(messages) {
       console.log('success');
+      var insertHTML = '';
+      messages.forEach(function(message){
+      insertHTML = buildHTML(message);         
+      $('.main__message').append(insertHTML)
     })
     .fail(function() {
       console.log('error');
