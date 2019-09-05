@@ -19,6 +19,32 @@ $(document).on('turbolinks:load', function() {
     return html;
   } 
 
+<<<<<<< HEAD
+=======
+  var reloadMessages = function() {
+    last_message_id = message.id
+    $.ajax({
+      url: location.href,
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log('success');
+      var insertHTML = '';
+      messages.forEach(function(message){
+      insertHTML = buildHTML(message);         
+      $('.main__message').append(insertHTML)
+    })
+    .fail(function() {
+      console.log('error');
+    });
+  };
+  function ScrollToNewMessage(){
+    $('.main__message').animate({scrollTop: $('.main__message')[0].scrollHeight}, 'fast');
+  }
+
+>>>>>>> 716770fa4b385d854348ec9a22f96bf55ec579d2
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
