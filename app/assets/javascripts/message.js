@@ -1,8 +1,8 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {  
   function buildHTML(message){
     var AddImage = '';
-    var MessageContent = message.content.present ? message.content : "";
-    var AddImage = message.image ? `<img src=${ message.image }>` : "";
+    var MessageContent = message.content ? message.content : "";
+    var AddImage = message.image ? `<img src=${message.image}>` : "";
     var html = `
       <div class="message" data-message-id = ${message.id}>
         <div class="upper-message">
@@ -19,26 +19,6 @@ $(document).on('turbolinks:load', function() {
     return html;
   } 
 
-  var reloadMessages = function() {
-    last_message_id = message.id
-    $.ajax({
-      url: location.href,
-      type: 'get',
-      dataType: 'json',
-      data: {id: last_message_id}
-    })
-    .done(function(messages) {
-      console.log('success');
-      var insertHTML = '';
-      messages.forEach(function(message){
-      insertHTML = buildHTML(message);         
-      $('.main__message').append(insertHTML)
-    })
-    .fail(function() {
-      console.log('error');
-    });
-  };
-
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -54,9 +34,10 @@ $(document).on('turbolinks:load', function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);      
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 1500);
       $('form')[0].reset();
     })
+
     .fail(function(){
       alert('error');
     })
@@ -65,5 +46,26 @@ $(document).on('turbolinks:load', function() {
     })
     return false;
   });
-  setInterval(reloadMessages, 5000);
+
+        var reloadMessages = function() {
+          last_message_id = $('.message:last').data('id');
+          console.log(location.href)
+            $.ajax({
+              url: 'api/messages',
+              type: 'get',
+              dataType: 'json',
+              data: {id: last_message_id}
+            })
+            .done(function(messages){
+              var insertHTML = '';
+              var html = buildHTML(messages);
+              messages.forEach(function () {
+              insertHTML = html; 
+              $('.new_message').append(insertHTML);
+              $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
+              });
+              
+            });
+        };
+        setInterval(reloadMessages, 5000);
 });
