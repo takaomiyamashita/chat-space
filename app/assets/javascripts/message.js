@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
     var MessageContent = message.content ? message.content : "";
     var AddImage = message.image ? `<img src=${message.image}>` : "";
     var html = `
-      <div class="message" data-message-id = ${message.id}>
+      <div class="message" data-id = ${message.id}>
         <div class="upper-message">
           <div class="upper-message__user-name">${message.user_name}</div>
           <div class="upper-message__date">${message.date}</div>
@@ -19,32 +19,6 @@ $(document).on('turbolinks:load', function() {
     return html;
   } 
 
-<<<<<<< HEAD
-=======
-  var reloadMessages = function() {
-    last_message_id = message.id
-    $.ajax({
-      url: location.href,
-      type: 'get',
-      dataType: 'json',
-      data: {id: last_message_id}
-    })
-    .done(function(messages) {
-      console.log('success');
-      var insertHTML = '';
-      messages.forEach(function(message){
-      insertHTML = buildHTML(message);         
-      $('.main__message').append(insertHTML)
-    })
-    .fail(function() {
-      console.log('error');
-    });
-  };
-  function ScrollToNewMessage(){
-    $('.main__message').animate({scrollTop: $('.main__message')[0].scrollHeight}, 'fast');
-  }
-
->>>>>>> 716770fa4b385d854348ec9a22f96bf55ec579d2
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -74,8 +48,7 @@ $(document).on('turbolinks:load', function() {
   });
 
         var reloadMessages = function() {
-          last_message_id = $('.message:last').data('id');
-          console.log(location.href)
+          last_message_id = $('.messages:last').data('id');
             $.ajax({
               url: 'api/messages',
               type: 'get',
@@ -84,14 +57,16 @@ $(document).on('turbolinks:load', function() {
             })
             .done(function(messages){
               var insertHTML = '';
-              var html = buildHTML(messages);
-              messages.forEach(function () {
+              messages.forEach(function (message) {
+              var html = buildHTML(message);
               insertHTML = html; 
               $('.new_message').append(insertHTML);
               $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
               });
-              
-            });
+            })
+            .fail(function() {
+              alert('通信に失敗しました');
+            })
         };
         setInterval(reloadMessages, 5000);
 });
