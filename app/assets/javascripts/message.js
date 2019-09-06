@@ -64,7 +64,7 @@ $(document).on('turbolinks:load', function() {
               $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
               });
             })
-            .fail(function() {
+            .fail(function(messages) {
               alert('通信に失敗しました');
             })
         };
