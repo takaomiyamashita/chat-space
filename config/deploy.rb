@@ -26,6 +26,7 @@ set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 set :keep_releases, 5
 
 set :linked_files, %w{ config/secrets.yml }
+set :ssh_options, :keepalive => true
 
 # デプロイ処理が終わった後、Unicornを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
