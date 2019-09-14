@@ -61,7 +61,7 @@ $(document).on('turbolinks:load', function() {
         var html = buildHTML(message);
         insertHTML = html; 
         $('.new_message').append(insertHTML);
-        $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
+        // $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
         });
       })
       // .fail(function() {
