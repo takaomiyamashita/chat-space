@@ -47,26 +47,26 @@ $(document).on('turbolinks:load', function() {
     return false;
   });
 
-        var reloadMessages = function() {
-          last_message_id = $('.messages:last').data('id');
-            $.ajax({
-              url: 'api/messages',
-              type: 'get',
-              dataType: 'json',
-              data: {id: last_message_id}
-            })
-            .done(function(messages){
-              var insertHTML = '';
-              messages.forEach(function (message) {
-              var html = buildHTML(message);
-              insertHTML = html; 
-              $('.new_message').append(insertHTML);
-              $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
-              });
-            })
-            // .fail(function() {
-            //   alert('通信に失敗しました');
-            // })
-        };
-        setInterval(reloadMessages, 5000);
+  var reloadMessages = function() {
+    last_message_id = $('.messages:last').data('id');
+      $.ajax({
+        url: 'api/messages',
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages){
+        var insertHTML = '';
+        messages.forEach(function (message) {
+        var html = buildHTML(message);
+        insertHTML = html; 
+        $('.new_message').append(insertHTML);
+        $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
+        });
+      })
+      // .fail(function() {
+      //   alert('通信に失敗しました');
+      // })
+  };
+  setInterval(reloadMessages, 5000);
 });
