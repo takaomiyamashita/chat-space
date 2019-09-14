@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.new_message').append(html);      
+      $('.messages').append(html);      
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 5000);
       $('form')[0].reset();
     })
