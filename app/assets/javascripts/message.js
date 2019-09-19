@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
   function buildHTML(message){
     var AddImage = '';
     var MessageContent = message.content ? message.content : "";
-    var AddImage = message.image ? `<img src=${message.image}>` : "";
+    var AddImage = message.image ? `<img src=${message.image.url}>` : "";
     var html = `
       <div class="message" data-id = ${message.id}>
         <div class="upper-message">
@@ -34,8 +34,8 @@ $(document).on('turbolinks:load', function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);      
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 5000);
       $('form')[0].reset();
+      $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
     })
 
     .fail(function(){
@@ -47,26 +47,33 @@ $(document).on('turbolinks:load', function() {
     return false;
   });
 
-  var reloadMessages = function() {
-    last_message_id = $('.messages:last').data('id');
+  
+  if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      setInterval(update, '5000');
+  }
+    function update(){
+      last_message_id = $('.message:last').data('id');
+      console.log(last_message_id)
       $.ajax({
         url: 'api/messages',
         type: 'get',
         dataType: 'json',
         data: {id: last_message_id}
       })
-      .done(function(messages){
-        var insertHTML = '';
+      .done(function update(messages){
         messages.forEach(function (message) {
-        var html = buildHTML(message);
-        insertHTML = html; 
-        $('.new_message').append(insertHTML);
-        // $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 5000);
+          var insertHTML = "";
+          insertHTML = buildHTML(message);
+          $('.messages').append(insertHTML);
+          $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
         });
       })
-      // .fail(function() {
-      //   alert('通信に失敗しました');
-      // })
-  };
-  setInterval(reloadMessages, 5000);
+      .fail(function update(){
+        alert('通信に失敗しました');
+      })
+      .always(function(){
+        $(".form__submit").prop('disabled', false);
+      })
+      return false;
+    }
 });
