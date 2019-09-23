@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
   function buildHTML(message){
     var AddImage = '';
     var MessageContent = message.content ? message.content : "";
-    var AddImage = message.image ? `<img src=${message.image.url}>` : "";
+    var AddImage = message.image ? `<img src=${message.image}>`: "";
     var html = `
       <div class="message" data-id = ${message.id}>
         <div class="upper-message">
@@ -13,9 +13,14 @@ $(document).on('turbolinks:load', function() {
           <p class="lower-message__content">
             ${MessageContent}
           </p>
+          <p class="lower-message__image">
+            ${AddImage}
+          </p>
         </div>
-        ${AddImage}
+        
       </div>`
+      console.log(MessageContent)
+      console.log(AddImage)
     return html;
   } 
 
@@ -53,7 +58,6 @@ $(document).on('turbolinks:load', function() {
   }
     function update(){
       last_message_id = $('.message:last').data('id');
-      console.log(last_message_id)
       $.ajax({
         url: 'api/messages',
         type: 'get',
@@ -65,7 +69,7 @@ $(document).on('turbolinks:load', function() {
           var insertHTML = "";
           insertHTML = buildHTML(message);
           $('.messages').append(insertHTML);
-          $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
+          $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
         });
       })
       .fail(function update(){
