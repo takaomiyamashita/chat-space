@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {  
   function buildHTML(message){
     var AddImage = '';
-    var MessageContent = message.content ? message.content : "";
+    // var MessageContent = message.content ? message.content : "";
     var AddImage = message.image ? `<img src=${message.image}>`: "";
     var html = `
       <div class="message" data-id = ${message.id}>
@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function() {
         </div>
         <div class="lower-message">
           <p class="lower-message__content">
-            ${MessageContent}
+            ${message.content}
           </p>
           <p class="lower-message__image">
             ${AddImage}
@@ -19,8 +19,7 @@ $(document).on('turbolinks:load', function() {
         </div>
         
       </div>`
-      console.log(MessageContent)
-      console.log(AddImage)
+ 
     return html;
   } 
 
@@ -37,6 +36,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(data){
+      console.log(data)
       var html = buildHTML(data);
       $('.messages').append(html);      
       $('form')[0].reset();
@@ -72,9 +72,9 @@ $(document).on('turbolinks:load', function() {
           $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
         });
       })
-      .fail(function update(){
-        alert('通信に失敗しました');
-      })
+      // .fail(function update(){
+      //   alert('通信に失敗しました');
+      // })
       .always(function(){
         $(".form__submit").prop('disabled', false);
       })

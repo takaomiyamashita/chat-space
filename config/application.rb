@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module ChatSpace
   class Application < Rails::Application
+    Time.zone ='Tokyo'
     config.generators do |g|
       g.javascripts false
       g.helper false

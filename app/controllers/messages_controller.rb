@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    # binding.pry
     @message = @group.messages.new(message_params)
     if @message.save
       respond_to do |format|
@@ -29,6 +30,5 @@ class MessagesController < ApplicationController
   def set_group
     @group = Group.find(params[:group_id])
     @users = @group.users
-    Time.zone ='Tokyo'
   end
 end
