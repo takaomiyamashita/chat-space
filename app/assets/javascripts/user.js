@@ -37,12 +37,11 @@ $(document).on('turbolinks:load', function() {
         users.forEach(function(user) {
           appendUser(user);
         });
-      } else if (users.length !== 0 && input.length !== 0 && user.name !== "takaharu"){
-        ;
       } else {
         appendNoUser("一致するユーザーはいません")
       }
     })
+    
     .fail(function() {
       alert('ユーザー検索に失敗しました')
     });
