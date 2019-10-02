@@ -1,7 +1,5 @@
 $(document).on('turbolinks:load', function() {  
   function buildHTML(message){
-    var AddImage = '';
-    // var MessageContent = message.content ? message.content : "";
     var AddImage = message.image ? `<img src=${message.image}>`: "";
     var html = `
       <div class="message" data-id = ${message.id}>
@@ -36,18 +34,15 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(data){
-      console.log(data)
       var html = buildHTML(data);
-      $('.messages').append(html);      
+      $('.messages').append(html);  
+      $('form').prop('disabled', false);    
       $('form')[0].reset();
       $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
     })
 
     .fail(function(){
       alert('error');
-    })
-    .always(function(){
-      $(".form__submit").prop('disabled', false);
     })
     return false;
   });
@@ -72,9 +67,9 @@ $(document).on('turbolinks:load', function() {
           $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
         });
       })
-      // .fail(function update(){
-      //   alert('通信に失敗しました');
-      // })
+      .fail(function update(){
+        alert('通信に失敗しました');
+      })
       .always(function(){
         $(".form__submit").prop('disabled', false);
       })
