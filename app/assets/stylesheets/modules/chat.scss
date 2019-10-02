@@ -4,6 +4,7 @@
   width: calc(100vw - 300px);
   height:100vh;
   overflow: scroll;
+  margin: 0px;
   .header {
     position: fixed;
     box-sizing: border-box;
@@ -72,7 +73,8 @@
 
   .form {
     width: calc(100vw - 300px);
-    position: fixed; bottom: 0%;
+    position: fixed; 
+    bottom: 0%;
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
