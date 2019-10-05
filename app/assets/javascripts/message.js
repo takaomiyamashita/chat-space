@@ -67,9 +67,9 @@ $(document).on('turbolinks:load', function() {
           $('.chat').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
         });
       })
-      .fail(function update(){
-        alert('通信に失敗しました');
-      })
+      // .fail(function update(){
+      //   alert('通信に失敗しました');
+      // })
       .always(function(){
         $(".form__submit").prop('disabled', false);
       })
